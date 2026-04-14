@@ -61,11 +61,11 @@ const ContactAndAppointment = () => {
             {/* Google Map Overlay */}
             <div className="w-full h-[280px] rounded-[32px] overflow-hidden border border-gray-100 shadow-sm relative group">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.2277326351!2d90.3728633!3d23.739257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf36a44c5f93%3A0x6d97c762551e70e9!2sDhanmondi%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1710000000000" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.62788506894!2d90.3665!3d23.81!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ4JzM2LjAiTiA5MMKwMjInMDUuNCJF!5e0!3m2!1sen!2sbd!4v1625000000000!5m2!1sen!2sbd" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
-                allowFullScreen="" 
+                allowFullScreen={true} // Fixed: Changed from "" to {true}
                 loading="lazy"
               ></iframe>
             </div>
