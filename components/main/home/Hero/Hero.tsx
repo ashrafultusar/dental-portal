@@ -49,7 +49,7 @@ const Hero = () => {
         <div className="relative flex justify-center items-center">
           <div className="relative w-full max-w-[550px] aspect-square rounded-[40px] overflow-hidden shadow-2xl">
             <Image 
-              src="/assets/Hero/hero.jpeg"
+              src="/assets/hero/hero.jpeg"
               alt="Modern Dental Office"
               fill
               className="object-cover"
