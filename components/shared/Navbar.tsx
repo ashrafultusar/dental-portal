@@ -10,11 +10,11 @@ const LandingPage = () => {
   const { data: session } = useSession();
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "Doctors", href: "#doctors" },
-    { name: "Reviews", href: "#reviews" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Doctors", href: "/doctors" },
+    { name: "Reviews", href: "/reviews" },
+    { name: "Contact", href: "/appoinment" },
   ];
 
   return (

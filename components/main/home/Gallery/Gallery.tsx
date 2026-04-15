@@ -15,10 +15,10 @@ const Gallery = () => {
         
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">
+          <h2 className="text-5xl lg:text-7xl font-bold text-[#1D2939] leading-[1.1]">
           Inside Our  <span className="text-[#2A9D8F]">Clinic</span>
           </h2>
-          <div className="w-20 h-1.5 bg-[#2A9D8F] mx-auto rounded-full"></div>
+         
         </div>
 
         {/* Responsive Flex/Grid Layout */}

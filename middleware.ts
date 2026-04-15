@@ -1,9 +1,9 @@
+
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-    // Using getToken completely bypasses the NextAuth core `openid-client` Edge/Turbopack bug!
     const token = await getToken({
         req,
         secret: process.env.AUTH_SECRET,
@@ -11,22 +11,27 @@ export async function middleware(req: NextRequest) {
     });
 
     const pathname = req.nextUrl.pathname;
+    const isLoggedIn = !!token;
+    
     const isAdminRoute = pathname.startsWith("/dental-staff-portal");
-
     if (isAdminRoute) {
-        if (!token) {
+        if (!isLoggedIn) {
             return NextResponse.redirect(new URL("/login", req.url));
         }
-        // @ts-ignore
-        if (token.role !== "admin") {
+      
+        if (token.role !== "admin" && token.role !== "moderator") {
             return NextResponse.redirect(new URL("/404-not-found", req.url));
         }
     }
 
-    if (token) {
-        if (pathname.startsWith("/login") || pathname.startsWith("/register")) {
+   
+    if (isLoggedIn) {
+       
+        if (pathname === "/login") {
             return NextResponse.redirect(new URL("/dental-staff-portal", req.url));
         }
+        
+        
     }
 
     return NextResponse.next();

@@ -6,36 +6,38 @@ export const authConfig = {
   },
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 7 * 24 * 60 * 60, // ১ সপ্তাহ লগইন থাকবে
   },
   providers: [],
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-
-      
       const userRole = auth?.user?.role;
+      const { pathname } = nextUrl;
 
-      const isOnDashboard = nextUrl.pathname.startsWith("/dental-staff-portal");
-      const isOnAdmin = nextUrl.pathname.startsWith("/dental-staff-portal");
+      const isOnDashboard = pathname.startsWith("/dental-staff-portal");
+      const isLoginPage = pathname.startsWith("/login");
+      const isRegisterPage = pathname.startsWith("/register");
 
-      if (isOnAdmin) {
-        if (!isLoggedIn) return false;
+      // ১. ড্যাশবোর্ড প্রোটেকশন
+      if (isOnDashboard) {
+        if (!isLoggedIn) return false; // লগইন না থাকলে /login এ পাঠাবে
         if (userRole === "admin" || userRole === "moderator") {
           return true;
         }
         return Response.redirect(new URL("/404-not-found", nextUrl));
       }
 
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        return false;
-      } else if (isLoggedIn) {
-        if (
-          nextUrl.pathname.startsWith("/login") ||
-          nextUrl.pathname.startsWith("/register")
-        ) {
+      // ২. লগইন থাকা অবস্থায় পেজ এক্সেস লজিক
+      if (isLoggedIn) {
+        // লগইন থাকলে /login পেজে যেতে দিবে না, ড্যাশবোর্ডে পাঠিয়ে দিবে
+        if (isLoginPage) {
           return Response.redirect(new URL("/dental-staff-portal", nextUrl));
+        }
+        
+        // লগইন থাকা অবস্থায় /register পেজে যাওয়ার অনুমতি দেওয়া হলো (অ্যাডমিনের জন্য)
+        if (isRegisterPage) {
+          return true;
         }
       }
 
@@ -43,7 +45,6 @@ export const authConfig = {
     },
     async jwt({ token, user }) {
       if (user) {
-      
         token.role = user.role;
         token.id = user.id;
       }
@@ -51,9 +52,7 @@ export const authConfig = {
     },
     async session({ session, token }) {
       if (token && session.user) {
-      
         session.user.role = token.role as string;
-       
         session.user.id = token.id as string;
       }
       return session;

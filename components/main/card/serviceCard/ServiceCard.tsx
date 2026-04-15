@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface ServiceProps {
   service: {
@@ -29,7 +30,7 @@ const ServiceCard: React.FC<ServiceProps> = ({ service }) => {
         />
         {/* Blue Price Bar - Matching the Image */}
         <div className="absolute bottom-0 left-0 right-0 bg-[#0E5B96] py-3 text-white font-bold text-xl flex items-center justify-center gap-1 z-10">
-          <span>{service.price}</span>
+          <span>৳{service.price}</span>
         </div>
       </div>
 
@@ -52,9 +53,9 @@ const ServiceCard: React.FC<ServiceProps> = ({ service }) => {
         </p>
 
         {/* Learn More Button - Light Blue Pill Shape */}
-        <button className="flex items-center gap-2 px-10 py-3 bg-[#EBF5FF] text-[#0E5B96] font-bold rounded-full hover:bg-[#0E5B96] hover:text-white transition-all duration-300">
-          Learn More <ArrowRight size={20} />
-        </button>
+        <Link href={'/appoinment'} className="flex items-center gap-2 px-10 py-3 bg-[#EBF5FF] text-[#0E5B96] font-bold rounded-full hover:bg-[#0E5B96] hover:text-white transition-all duration-300">
+          Booking <ArrowRight size={20} />
+        </Link>
       </div>
     </div>
   );

@@ -11,40 +11,39 @@ import {
   Star,
   Settings,
   Image as ImageIcon,
-  LogOut
+  LogOut,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 
-
 const mainMenuItems = [
   {
     name: "Dashboard",
     icon: LayoutDashboard,
-    href: "/dental-staff-portal"
+    href: "/dental-staff-portal",
   },
   {
     name: "Manage Doctors",
     icon: Stethoscope,
-    href: "/dental-staff-portal/doctor"
+    href: "/dental-staff-portal/doctor",
   },
   {
     name: "Manage Services",
     icon: Settings,
-    href: "/dental-staff-portal/services"
+    href: "/dental-staff-portal/services",
   },
   {
     name: "Patient Reviews",
     icon: Star,
-    href: "/dental-staff-portal/review"
+    href: "/dental-staff-portal/review",
   },
 
   {
-    name: "Appointments",
+    name: "Adminastation",
     icon: CalendarCheck,
-    href: "/dental-staff-portal/appointments"
+    href: "/dental-staff-portal/adminastation",
   },
 ];
 
@@ -102,11 +101,19 @@ export default function Sidebar() {
             <div className="bg-teal-500 p-2.5 rounded-xl shrink-0 shadow-lg shadow-teal-500/20">
               <Stethoscope size={26} className="text-white" />
             </div>
-            <div className={`ml-4 transition-all duration-300 ${!isOpen ? "lg:opacity-0 lg:invisible lg:w-0" : "opacity-100 visible"}`}>
+            <div
+              className={`ml-4 transition-all duration-300 ${
+                !isOpen
+                  ? "lg:opacity-0 lg:invisible lg:w-0"
+                  : "opacity-100 visible"
+              }`}
+            >
               <h1 className="text-lg font-black text-white leading-none">
                 DENTAL<span className="text-teal-400">STAFF</span>
               </h1>
-              <p className="text-[10px] text-teal-500 font-bold uppercase tracking-[1px] mt-1">Admin Portal</p>
+              <p className="text-[10px] text-teal-500 font-bold uppercase tracking-[1px] mt-1">
+                Admin Portal
+              </p>
             </div>
 
             <button
@@ -118,7 +125,11 @@ export default function Sidebar() {
           </div>
 
           <div className="flex-1 overflow-y-auto px-4">
-            <p className={`text-[10px] uppercase tracking-[2px] text-slate-500 mb-4 mt-6 px-4 font-bold ${!isOpen && "lg:hidden"}`}>
+            <p
+              className={`text-[10px] uppercase tracking-[2px] text-slate-500 mb-4 mt-6 px-4 font-bold ${
+                !isOpen && "lg:hidden"
+              }`}
+            >
               Main Menu
             </p>
             <nav className="space-y-2">
@@ -129,13 +140,25 @@ export default function Sidebar() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileOpen(false)}
-                    className={`group relative flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${isActive
-                      ? "bg-teal-500 text-white shadow-lg shadow-teal-500/20"
-                      : "hover:bg-white/5 hover:text-white"
-                      }`}
+                    className={`group relative flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
+                      isActive
+                        ? "bg-teal-500 text-white shadow-lg shadow-teal-500/20"
+                        : "hover:bg-white/5 hover:text-white"
+                    }`}
                   >
-                    <item.icon size={22} className={`shrink-0 ${isActive ? "text-white" : "group-hover:text-teal-400"}`} />
-                    <span className={`transition-all duration-300 whitespace-nowrap ${!isOpen ? "lg:opacity-0 lg:w-0 lg:overflow-hidden" : "opacity-100"}`}>
+                    <item.icon
+                      size={22}
+                      className={`shrink-0 ${
+                        isActive ? "text-white" : "group-hover:text-teal-400"
+                      }`}
+                    />
+                    <span
+                      className={`transition-all duration-300 whitespace-nowrap ${
+                        !isOpen
+                          ? "lg:opacity-0 lg:w-0 lg:overflow-hidden"
+                          : "opacity-100"
+                      }`}
+                    >
                       {item.name}
                     </span>
 
@@ -151,11 +174,20 @@ export default function Sidebar() {
             </nav>
             <div className="mt-8 border-t border-white/5 pt-6">
               <button
-                onClick={() => signOut({ callbackUrl: '/login' })}
+                onClick={() => signOut({ callbackUrl: "/login" })}
                 className="group relative flex items-center justify-start w-full gap-4 px-4 py-3 rounded-xl text-sm font-semibold transition-all hover:bg-red-500/10 hover:text-red-500"
               >
-                <LogOut size={22} className="shrink-0 text-slate-400 group-hover:text-red-500 transition-colors" />
-                <span className={`transition-all duration-300 font-bold ${!isOpen ? "lg:opacity-0 lg:w-0 lg:overflow-hidden" : "opacity-100"}`}>
+                <LogOut
+                  size={22}
+                  className="shrink-0 text-slate-400 group-hover:text-red-500 transition-colors"
+                />
+                <span
+                  className={`transition-all duration-300 font-bold ${
+                    !isOpen
+                      ? "lg:opacity-0 lg:w-0 lg:overflow-hidden"
+                      : "opacity-100"
+                  }`}
+                >
                   Log Out
                 </span>
 
