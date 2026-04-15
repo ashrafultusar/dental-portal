@@ -1,11 +1,15 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
+  },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'your-image-provider.com',
+        hostname: 'res.cloudinary.com',
       },
     ],
   },
