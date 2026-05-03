@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
 import styles from './Hero.module.css'; 
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -22,12 +23,12 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="flex items-center gap-2 px-8 py-4 bg-[#2A9D8F] text-white font-bold rounded-xl hover:bg-[#23857a] transition-all shadow-lg shadow-teal-100">
+            <Link href={'/appoinment'} className="flex items-center gap-2 px-8 py-4 bg-[#2A9D8F] text-white font-bold rounded-xl hover:bg-[#23857a] transition-all shadow-lg shadow-teal-100">
               Book Appointment <ArrowRight size={20} />
-            </button>
-            <button className="px-8 py-4 bg-white text-[#1D2939] font-bold border border-gray-200 rounded-xl hover:bg-gray-50 transition-all">
+            </Link>
+            <Link href={'/services'} className="px-8 py-4 bg-white text-[#1D2939] font-bold border border-gray-200 rounded-xl hover:bg-gray-50 transition-all">
               Our Services
-            </button>
+            </Link>
           </div>
 
           {/* Features Checklist */}
@@ -49,6 +50,7 @@ const Hero = () => {
           <div className="relative w-full max-w-[550px] aspect-square rounded-[40px] overflow-hidden shadow-2xl">
             <Image 
               src="/assets/Hero/hero.jpeg"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               alt="Modern Dental Office"
               fill
               className="object-cover"

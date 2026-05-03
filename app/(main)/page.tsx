@@ -6,13 +6,23 @@ import Stats from "@/components/main/home/Stats/Stats";
 import VisitingHours from "@/components/main/home/VisitingHours/VisitingHours";
 import OurDoctors from "@/components/main/ourDoctors/OurDoctors";
 import Reviews from "@/components/main/reviews/Reviews";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import { Suspense } from "react";
 
 const page = () => {
   return (
     <div>
       <Hero />
       <Stats />
-      <Services />
+      <Suspense 
+        fallback={
+          <div className="flex justify-center items-center py-20 bg-[#F8FBFB]">
+            <LoadingSpinner />
+          </div>
+        }
+      >
+        <Services />
+      </Suspense>
       <OurDoctors />
       <Gallery />
       <Reviews />
