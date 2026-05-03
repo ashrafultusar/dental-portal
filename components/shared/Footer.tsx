@@ -1,5 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -9,13 +11,18 @@ const Footer = () => {
         {/* Column 1: Logo & Description */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <div className="flex items-center justify-center w-8 h-8 bg-[#2A9D8F] text-white font-bold rounded-lg">
-              D
-            </div>
-            <span className="text-xl font-bold tracking-tight"> Sabbir Dental</span>
+            <Image
+              src="/assets/logo.jpg"
+              alt="Dr.Sabbir Dental Care"
+              width={45}
+              height={45}
+              className="object-contain rounded-lg"
+              priority
+            />
+            <span className="text-xl font-bold tracking-tight"> Dr.Sabbir Dental Care</span>
           </div>
           <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-            আপনার হাসির যত্ন নেওয়া আমাদের কাজ। আধুনিক প্রযুক্তি ও অভিজ্ঞ ডাক্তারদের সাথে সেরা ডেন্টাল সেবা।
+            Taking care of your smile is our mission. Providing the best dental care with modern technology and experienced doctors.
           </p>
         </div>
 
@@ -23,10 +30,18 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-bold mb-6">Quick Links</h3>
           <ul className="space-y-3 text-gray-400 text-sm">
-            <li><a href="#" className="hover:text-[#2A9D8F] transition-colors">Services</a></li>
-            <li><a href="#" className="hover:text-[#2A9D8F] transition-colors">Doctors</a></li>
-            <li><a href="#" className="hover:text-[#2A9D8F] transition-colors">Reviews</a></li>
-            <li><a href="#" className="hover:text-[#2A9D8F] transition-colors">About</a></li>
+            <li>
+              <Link href="/services" className="hover:text-[#2A9D8F] transition-colors">Services</Link>
+            </li>
+            <li>
+              <Link href="/doctors" className="hover:text-[#2A9D8F] transition-colors">Doctors</Link>
+            </li>
+            <li>
+              <Link href="/reviews" className="hover:text-[#2A9D8F] transition-colors">Reviews</Link>
+            </li>
+            <li>
+              <Link href="/appoinment" className="hover:text-[#2A9D8F] transition-colors">Contact</Link>
+            </li>
           </ul>
         </div>
 
@@ -35,16 +50,16 @@ const Footer = () => {
           <h3 className="text-lg font-bold mb-6">Contact</h3>
           <ul className="space-y-4 text-gray-400 text-sm">
             <li className="flex items-center gap-3">
-              <MapPin size={18} className="text-gray-500" />
-              <span>Dhanmondi, Dhaka</span>
+              <MapPin size={18} className="text-[#2A9D8F]" />
+              <span>Mirpur 2, opposite to Dhaka Commerce College, Mirpur, Bangladesh, 1216</span>
             </li>
             <li className="flex items-center gap-3">
-              <Phone size={18} className="text-gray-500" />
-              <span>+880 1700-000000</span>
+              <Phone size={18} className="text-[#2A9D8F]" />
+              <span>+8801951-029630</span>
             </li>
             <li className="flex items-center gap-3">
-              <Mail size={18} className="text-gray-500" />
-              <span>info@sabbirdental.com</span>
+              <Mail size={18} className="text-[#2A9D8F]" />
+              <span>sabbirahmedbappa27189@gmail.com</span>
             </li>
           </ul>
         </div>
@@ -54,11 +69,11 @@ const Footer = () => {
           <h3 className="text-lg font-bold mb-6">Hours</h3>
           <ul className="space-y-4 text-gray-400 text-sm">
             <li className="flex items-center gap-3">
-              <Clock size={18} className="text-gray-500" />
+              <Clock size={18} className="text-[#2A9D8F]" />
               <span>Sat–Thu: 9AM–9PM</span>
             </li>
             <li className="flex items-center gap-3">
-              <Clock size={18} className="text-gray-500" />
+              <Clock size={18} className="text-[#2A9D8F]" />
               <span>Friday: Closed</span>
             </li>
           </ul>
@@ -67,7 +82,7 @@ const Footer = () => {
 
       {/* Bottom Border & Copyright */}
       <div className="mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-        <p>© 2026  Sabbir Dental. All rights reserved.</p>
+        <p>© 2026 Sabbir Dental. All rights reserved.</p>
       </div>
     </footer>
   );
