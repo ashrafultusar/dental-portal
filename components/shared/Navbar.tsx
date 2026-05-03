@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, Menu, X, LogOut, LayoutDashboard } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
+import Image from "next/image";
 
 const LandingNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,9 +30,14 @@ const LandingNavbar = () => {
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-10 h-10 bg-[#2A9D8F] text-white font-bold text-xl rounded-lg">
-            D
-          </div>
+        <Image
+            src="/assets/logo.jpg"
+            alt="Dr.Sabbir Dental Care"
+            width={45}
+            height={45}
+            className="object-contain rounded-lg"
+            priority // Optimizes loading for navbar elements
+          />
           <span className="text-xl text-black font-bold tracking-tight">
             Dr.Sabbir Dental Care
           </span>
