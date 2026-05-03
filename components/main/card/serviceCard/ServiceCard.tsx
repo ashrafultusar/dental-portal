@@ -1,60 +1,71 @@
-import React from 'react';
-import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { CalendarDays, Info, ArrowRight } from "lucide-react";
 
-interface ServiceProps {
+interface ServiceCardProps {
   service: {
-    id: number;
+    id: number | string;
+    _id: string;
     title: string;
     description: string;
-    price: string;
+    price: string | number;
     image: string;
-    icon: React.ReactNode;
   };
 }
 
-const ServiceCard: React.FC<ServiceProps> = ({ service }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
   return (
-    <div className="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center overflow-hidden group">
-      
-      {/* Image & Price Section */}
-      <div className="relative w-full h-56 overflow-hidden">
+    <div className="group relative bg-white rounded-2xl md:rounded-3xl p-3 md:p-5 shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col h-full">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-[#E6F4F1]/30 opacity-50 -z-10" />
+
+      {/* Image Container */}
+      <div className="relative aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden mb-3 md:mb-6 border border-slate-200 bg-slate-50">
         <Image
-          src={service.image}
+          src={service.image || "/placeholder-service.png"}
           alt={service.title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, 33vw"
-          priority={service.id <= 3}
+          sizes="(max-width: 768px) 50vw, 33vw"
         />
-        {/* Blue Price Bar - Matching the Image */}
-        <div className="absolute bottom-0 left-0 right-0 bg-[#0E5B96] py-3 text-white font-bold text-xl flex items-center justify-center gap-1 z-10">
-          <span>৳{service.price}</span>
+        
+        {/* Price Badge - Compact for mobile */}
+        <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-[#0F8C75] text-white rounded-full px-2 py-0.5 md:px-2 md:py-1 flex items-center gap-1 shadow-md">
+          <span className="text-xs md:text-sm font-bold">৳{service.price}</span>
+          <span className="text-[8px] md:text-[10px]">🦷</span>
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className="p-8 pt-10 flex flex-col items-center">
-        {/* Icon Circle - Matching the light blue/white style in image */}
-        <div className="w-20 h-20 bg-[#EBF5FF] rounded-full flex items-center justify-center mb-6 ring-8 ring-[#F8FBFF]">
-            {/* এখানে icon-টি pass করার সময় color ও size খেয়াল রাখবেন */}
-            <div className="text-[#1E74B5]">
-                {service.icon}
-            </div>
-        </div>
-
-        <h3 className="text-2xl font-extrabold text-[#111827] mb-4">
+      {/* Content Area - Adjusted for tight space */}
+      <div className="space-y-1.5 md:space-y-2.5 mb-4 md:mb-8 text-center px-1">
+        <h3 className="text-sm md:text-xl font-bold md:font-extrabold text-[#111827] leading-tight line-clamp-1">
           {service.title}
         </h3>
-        
-        <p className="text-gray-500 text-base leading-relaxed mb-8 max-w-[280px]">
+        <p className="text-[10px] md:text-sm text-slate-500 line-clamp-2 leading-relaxed">
           {service.description}
         </p>
+      </div>
 
-        {/* Learn More Button - Light Blue Pill Shape */}
-        <Link href={'/appoinment'} className="flex items-center gap-2 px-10 py-3 bg-[#EBF5FF] text-[#0E5B96] font-bold rounded-full hover:bg-[#0E5B96] hover:text-white transition-all duration-300">
-          Booking <ArrowRight size={20} />
+      {/* Action Buttons Grid */}
+      <div className="grid grid-cols-2 gap-2 mt-auto">
+        <Link 
+          href={`/services/${service._id}`}
+          className="flex items-center justify-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[10px] md:text-sm rounded-lg md:rounded-xl py-2 md:py-3 transition-colors"
+        >
+          <Info size={12} className="md:hidden" />
+          <Info size={16} className="hidden md:block" />
+          Details
+        </Link>
+        
+        <Link 
+          href={`/appointment`}
+          className="relative flex items-center justify-center gap-1 bg-[#0F8C75] hover:bg-[#0A6B59] text-white font-bold text-[10px] md:text-sm rounded-lg md:rounded-xl py-2 md:py-3 shadow-sm hover:shadow-md transition-all overflow-hidden"
+        >
+          <CalendarDays size={12} className="md:hidden" />
+          <CalendarDays size={16} className="hidden md:block" />
+          Book
+          <ArrowRight size={12} className="hidden md:block" />
         </Link>
       </div>
     </div>

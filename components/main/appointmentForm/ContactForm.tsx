@@ -29,7 +29,7 @@ const ContactForm = () => {
   const handleWhatsAppSend = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const myNumber = "8801571419493"; 
+    const myNumber = "8801951-029630"; 
 
     const text = `*New Inquiry*%0A
 *Name:* ${formData.name}%0A

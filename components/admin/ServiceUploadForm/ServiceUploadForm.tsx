@@ -6,21 +6,36 @@ import { ImageIcon, X, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 export default function ServiceUploadForm() {
-    const [preview, setPreview] = useState<string | null>(null);
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [previews, setPreviews] = useState<string[]>([]);
     const [isPending, startTransition] = useTransition();
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreview(reader.result as string);
-            };
-            reader.readAsDataURL(file);
+        const files = Array.from(e.target.files || []);
+        if (files.length > 0) {
+            setSelectedFiles(prev => [...prev, ...files]);
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setPreviews(prev => [...prev, reader.result as string]);
+                };
+                reader.readAsDataURL(file);
+            });
         }
+        e.target.value = '';
+    };
+
+    const removeImage = (index: number) => {
+        setSelectedFiles(prev => prev.filter((_, i) => i !== index));
+        setPreviews(prev => prev.filter((_, i) => i !== index));
     };
 
     const clientAction = async (formData: FormData) => {
+        // Append all selected files to formData
+        selectedFiles.forEach(file => {
+            formData.append("images", file);
+        });
+
         startTransition(async () => {
             const result = await createServiceAction(formData);
             if (result?.error) {
@@ -55,28 +70,28 @@ export default function ServiceUploadForm() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-semibold mb-1.5 text-slate-700">Service Image</label>
+                    <label className="block text-sm font-semibold mb-1.5 text-slate-700">Service Images</label>
                     <div className="relative">
-                        <label className={`flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer bg-slate-50 hover:bg-teal-50 transition-all ${preview ? 'hidden' : ''}`}>
+                        <label className={`flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer bg-slate-50 hover:bg-teal-50 transition-all`}>
                             <ImageIcon className="w-10 h-10 mb-2 text-slate-400" />
-                            <span className="text-sm text-slate-500">Click to upload</span>
-                            <input id="imageInput" name="image" type="file" accept="image/*" required className="hidden" onChange={handleImageChange} />
+                            <span className="text-sm text-slate-500">Click to upload images</span>
+                            <input id="imageInput" name="image" type="file" accept="image/*" multiple className="hidden" onChange={handleImageChange} />
                         </label>
 
-                        {preview && (
-                            <div className="relative w-40 h-40 mx-auto rounded-2xl overflow-hidden border-2 border-teal-500">
-                                <Image src={preview} alt="Preview" fill className="object-cover" />
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setPreview(null);
-                                        const fileInput = document.getElementById('imageInput') as HTMLInputElement;
-                                        if (fileInput) fileInput.value = '';
-                                    }}
-                                    className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"
-                                >
-                                    <X size={14} />
-                                </button>
+                        {previews.length > 0 && (
+                            <div className="flex flex-wrap gap-4 mt-4">
+                                {previews.map((preview, index) => (
+                                    <div key={index} className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-teal-500">
+                                        <Image src={preview} alt={`Preview ${index}`} fill className="object-cover" />
+                                        <button
+                                            type="button"
+                                            onClick={() => removeImage(index)}
+                                            className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"
+                                        >
+                                            <X size={14} />
+                                        </button>
+                                    </div>
+                                ))}
                             </div>
                         )}
                     </div>

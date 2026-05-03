@@ -1,66 +1,42 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { getDoctorsAction } from '@/lib/data/getDoctor';
+import DoctorCard from '../card/DoctorCard/DoctorCard';
 
+interface Doctor {
+  _id: string;
+  image: string;
+  name: string;
+  specialty: string;
+  experience: string;
+  description: string;
+}
 const OurDoctors = async () => {
   const doctorsData = await getDoctorsAction();
 
   return (
     <section id="doctors" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6">
 
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl lg:text-7xl font-bold text-[#1D2939] leading-[1.1]">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#1D2939] leading-[1.1]">
             Meet Our <span className="text-[#2A9D8F]">Doctors</span>
           </h2>
         </div>
 
-        {/* Doctors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
-          {doctorsData.map((doctor: any) => (
-            <div
-              key={doctor._id}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
-            >
-              {/* Doctor Image Container */}
-              <div className="relative aspect-[4/5] w-full bg-gray-100">
-                <Image
-                  src={doctor.image || "/placeholder-doctor.png"}
-                  alt={doctor.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Doctor Details */}
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-[#1D2939] mb-2">{doctor.name}</h3>
-
-                {/* Badges */}
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="px-3 py-1 bg-[#E9F5F3] text-[#2A9D8F] text-[10px] font-bold rounded-lg border border-[#D1E9E5]">
-                    {doctor.specialty}
-                  </span>
-                  <span className="text-gray-400 text-[10px] font-medium">
-                    {doctor.experience}
-                  </span>
-                </div>
-
-                <p className="text-gray-500 text-[12px] leading-relaxed">
-                  {doctor.description}
-                </p>
-              </div>
-            </div>
+       
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto mb-12">
+        {doctorsData.map((doctor: Doctor) => (
+            <DoctorCard key={doctor._id} doctor={doctor} />
           ))}
         </div>
 
         {/* All Doctors Button */}
         <div className="flex justify-center">
           <Link href="/doctors">
-            <button className="flex items-center gap-2 px-6 py-3 bg-white text-[#1D2939] font-bold border border-gray-200 rounded-xl hover:bg-gray-50 transition-all shadow-sm">
+            <button className="flex items-center gap-2 px-6 py-3 bg-white text-[#1D2939] over:text-white  transition-all shadow-sm hover:shadow-lg font-bold border border-gray-200 rounded-xl hover:bg-[#2A9D8F] cursor-pointer hover:text-white hover:border-[#2A9D8F]   text-sm">
               View All Doctors <ArrowRight size={18} />
             </button>
           </Link>

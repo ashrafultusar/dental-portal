@@ -16,11 +16,15 @@ export async function createServiceAction(formData: FormData) {
         const description = formData.get("description") as string;
         const price = formData.get("price") as string;
         const icon = formData.get("icon") as string;
-        const imageFile = formData.get("image") as File;
 
-        let imageUrl = "";
-        if (imageFile && imageFile.size > 0) {
-            imageUrl = await uploadImage(imageFile, "services");
+        const imageFiles = formData.getAll("images") as File[];
+        const imageUrls: string[] = [];
+
+        for (const file of imageFiles) {
+            if (file && file.size > 0) {
+                const url = await uploadImage(file, "services");
+                imageUrls.push(url);
+            }
         }
 
         await Service.create({
@@ -28,7 +32,8 @@ export async function createServiceAction(formData: FormData) {
             description,
             price,
             icon,
-            image: imageUrl,
+            image: imageUrls.length > 0 ? imageUrls[0] : "",
+            images: imageUrls,
         });
 
         success = true;
@@ -72,13 +77,38 @@ export async function updateServiceAction(id: string, formData: FormData) {
         const description = formData.get("description") as string;
         const price = formData.get("price") as string;
         const icon = formData.get("icon") as string;
-        const imageFile = formData.get("image") as File;
 
+        // Use existing image or array
         const updateData: any = { title, description, price, icon };
 
-        if (imageFile && imageFile.size > 0) {
-            const imageUrl = await uploadImage(imageFile, "services");
-            updateData.image = imageUrl;
+        const imageFiles = formData.getAll("images") as File[];
+        const newImageUrls: string[] = [];
+
+        for (const file of imageFiles) {
+            if (file && file.size > 0) {
+                const url = await uploadImage(file, "services");
+                newImageUrls.push(url);
+            }
+        }
+
+        // Single image backward compatibility fallback if single image input is used
+        const singleImageFile = formData.get("image") as File;
+        if (singleImageFile && singleImageFile.size > 0) {
+            const url = await uploadImage(singleImageFile, "services");
+            newImageUrls.push(url);
+        }
+
+        const existingImages = formData.getAll("existingImages") as string[];
+
+        // Include previously uploaded existing images plus new image uploads
+        const finalImages = [...(existingImages || []), ...newImageUrls];
+
+        if (finalImages.length > 0) {
+            updateData.images = finalImages;
+            updateData.image = finalImages[0];
+        } else if (newImageUrls.length > 0) {
+            updateData.images = newImageUrls;
+            updateData.image = newImageUrls[0];
         }
 
         await Service.findByIdAndUpdate(id, updateData);

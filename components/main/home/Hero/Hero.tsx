@@ -1,7 +1,6 @@
-import React from 'react';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
-import styles from './Hero.module.css'; // Module import kora holo
+import styles from './Hero.module.css'; 
 
 const Hero = () => {
   return (
@@ -19,7 +18,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-gray-500 text-lg max-w-lg leading-relaxed">
-            আধুনিক প্রযুক্তি ও অভিজ্ঞ ডাক্তারদের সাথে সেরা ডেন্টাল সেবা পান। আপনার হাসি আমাদের অঙ্গীকার।
+            Experience top-tier dental care with modern technology and expert doctors. Your smile is our priority.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -49,7 +48,7 @@ const Hero = () => {
         <div className="relative flex justify-center items-center">
           <div className="relative w-full max-w-[550px] aspect-square rounded-[40px] overflow-hidden shadow-2xl">
             <Image 
-              src="/assets/galery/hero.jpeg"
+              src="/assets/Hero/hero.jpeg"
               alt="Modern Dental Office"
               fill
               className="object-cover"
@@ -57,14 +56,14 @@ const Hero = () => {
             />
           </div>
 
-          {/* Emergency Badge Overlay - Module Class Apply kora holo */}
+          {/* Emergency Badge Overlay */}
           <div className={`${styles.emergencyBadge} absolute -bottom-6 -left-6 md:left-0 bg-white p-4 rounded-2xl shadow-xl border border-gray-50 flex items-center gap-4 z-20`}>
             <div className="w-12 h-12 bg-[#E9F5F3] rounded-full flex items-center justify-center text-[#2A9D8F]">
               <Phone size={24} fill="currentColor" />
             </div>
             <div>
               <p className="text-xs text-gray-400 font-medium">Emergency?</p>
-              <p className="text-base font-bold text-[#1D2939]">+880 1700-000000</p>
+              <p className="text-base font-bold text-[#1D2939]">+8801951-029630</p>
             </div>
           </div>
         </div>

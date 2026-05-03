@@ -10,34 +10,31 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section className="py-16 md:py-20 bg-slate-50">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-5xl lg:text-7xl font-bold text-[#1D2939] leading-[1.1]">
-          Inside Our  <span className="text-[#2A9D8F]">Clinic</span>
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-extrabold text-[#1D2939] tracking-tight">
+            Inside Our <span className="text-[#2A9D8F]">Clinic</span>
           </h2>
-         
         </div>
 
-        {/* Responsive Flex/Grid Layout */}
-        <div className="flex flex-wrap justify-center gap-6">
+      
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
           {images.map((image) => (
             <div 
               key={image.id} 
-              className="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] bg-white rounded-3xl overflow-hidden shadow-md border border-slate-100 transition-all duration-300 hover:shadow-xl"
+              className="group bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              {/* Aspect Ratio 3:2 matches professional event photos best */}
-              <div className="relative aspect-[3/2] w-full">
+              {/* Image Container */}
+              <div className="relative aspect-[3/2] w-full overflow-hidden">
                 <Image 
                   src={image.src} 
                   alt={image.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover" 
-                  // object-cover এখানে ইমেজের চারপাশের অপ্রয়োজনীয় অংশ বাদ দিয়ে সাবজেক্টকে ফোকাসে রাখবে
-                  priority
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105" 
                 />
               </div>
             </div>

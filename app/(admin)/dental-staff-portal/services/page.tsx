@@ -14,6 +14,7 @@ interface IService {
     price: string;
     icon?: string;
     image?: string;
+    images?: string[];
 }
 
 export default function ServicesPage() {
@@ -67,7 +68,7 @@ export default function ServicesPage() {
                     <div key={service._id} className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all group overflow-hidden flex flex-col">
                         <div className="relative w-full h-40 bg-slate-100 overflow-hidden">
                             <Image
-                                src={service.image || "/placeholder-doctor.png"}
+                                src={service.images?.[0] || service.image || "/placeholder-doctor.png"}
                                 alt={service.title}
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"

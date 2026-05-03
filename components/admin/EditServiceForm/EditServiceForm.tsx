@@ -12,6 +12,7 @@ interface IService {
     price: string;
     icon?: string;
     image?: string;
+    images?: string[];
 }
 
 interface EditServiceFormProps {
@@ -19,7 +20,7 @@ interface EditServiceFormProps {
 }
 
 export default function EditServiceForm({ service }: EditServiceFormProps) {
-    const [preview, setPreview] = useState<string | null>(service.image || null);
+    const [preview, setPreview] = useState<string | null>(service.images?.[0] || service.image || null);
     const [isPending, startTransition] = useTransition();
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

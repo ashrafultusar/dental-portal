@@ -6,21 +6,21 @@ const ContactInfo = () => {
     {
       icon: <MapPin size={24} />,
       label: "Address",
-      value: "House 12, Road 5, Mirpur, Dhaka 1205",
+      value: "Mirpur 2,opposite to Dhaka commerce college , Mirpur, Bangladesh, 1216",
       color: "text-red-500",
       bg: "bg-red-50"
     },
     {
       icon: <Phone size={24} />,
       label: "Phone",
-      value: "+880 1700-000000",
+      value: "+8801951-029630",
       color: "text-blue-500",
       bg: "bg-blue-50"
     },
     {
       icon: <Mail size={24} />,
       label: "Email",
-      value: "info@dentalcare.com",
+      value: "sabbirahmedbappa27189@gmail.com",
       color: "text-amber-500",
       bg: "bg-amber-50"
     },
