@@ -76,7 +76,7 @@ export default async function ServiceDetailsPage({
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0E5B96] to-[#2A9D8F] rounded-[2rem] transform rotate-3 scale-[1.02] opacity-20 transition-transform duration-500"></div>
 
-                {/* স্লাইডার কম্পোনেন্ট কল করা হলো */}
+             
                 <ServiceImageSlider
                   images={
                     service.images && service.images.length > 0
@@ -87,11 +87,11 @@ export default async function ServiceDetailsPage({
                 />
 
                 <div className="absolute -bottom-6 -right-6 lg:-right-10 bg-white p-2 rounded-2xl shadow-xl animate-bounce-slow z-30 pointer-events-none">
-                  <div className="bg-gradient-to-r from-[#0E5B96] to-[#1E74B5] px-8 py-4 rounded-xl text-white">
-                    <p className="text-sm text-blue-100 font-medium mb-1">
+                  <div className="bg-gradient-to-r from-[#2a9d8f] to-[#2a9d85] px-8 py-4 rounded-xl text-white">
+                    <p className="text-sm text-white font-medium mb-1">
                       Starting From
                     </p>
-                    <p className="text-3xl font-extrabold shadow-sm">
+                    <p className="text-3xl font-extrabold shadow-sm text-white">
                       ৳{service.price}
                     </p>
                   </div>
@@ -124,19 +124,19 @@ export default async function ServiceDetailsPage({
           </div>
 
           <div className="lg:col-span-7 flex flex-col justify-center pt-4 lg:pl-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-[#0E5B96] rounded-full font-semibold text-sm mb-6 w-fit border border-blue-100">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e9f5f4] text-[#2aa8b8] rounded-full font-semibold text-sm mb-6 w-fit border border-blue-100">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0E5B96] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0E5B96]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e9f5f4] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e9f5f4]"></span>
               </span>
               Premium Dental Care
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#111827] leading-tight tracking-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1d2939] leading-tight tracking-tight mb-6">
               {service.title}
             </h1>
 
-            <div className="w-20 h-1.5 bg-gradient-to-r from-[#0E5B96] to-transparent rounded-full mb-8"></div>
+            <div className="w-20 h-1.5 bg-gradient-to-r from-[#2aa8b8] to-transparent rounded-full mb-8"></div>
 
             <div className="prose prose-lg text-gray-600 mb-10 whitespace-pre-wrap leading-relaxed max-w-none">
               <p className="text-lg sm:text-xl text-gray-500 font-medium leading-relaxed">
@@ -145,7 +145,7 @@ export default async function ServiceDetailsPage({
             </div>
 
             <div className="mb-12">
-              <h3 className="text-2xl font-bold text-[#111827] mb-6">
+              <h3 className="text-2xl font-bold text-[#1d2939] mb-6">
                 Why Choose Us?
               </h3>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -169,7 +169,7 @@ export default async function ServiceDetailsPage({
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-auto">
               <Link
                 href={`/appoinment`}
-                className="group relative w-full sm:w-auto overflow-hidden bg-[#0E5B96] text-white font-bold text-lg rounded-full px-10 py-5 transition-all outline-none focus:ring-4 focus:ring-blue-300 hover:shadow-xl hover:shadow-blue-500/30 flex items-center justify-center gap-3"
+                className="group relative w-full sm:w-auto overflow-hidden bg-[#2a9d8f] text-white font-bold text-lg rounded-full px-10 py-5 transition-all outline-none focus:ring-4 focus:ring-blue-300 hover:shadow-xl hover:shadow-blue-500/30 flex items-center justify-center gap-3"
               >
                 <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
                 <span className="relative flex items-center gap-2">

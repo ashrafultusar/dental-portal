@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sun, Moon, CalendarX, Phone, CalendarCheck, Activity } from 'lucide-react';
+import Link from 'next/link';
 
 const VisitingHours = () => {
   return (
@@ -31,10 +32,10 @@ const VisitingHours = () => {
             </div>
 
             <div className="pt-2">
-              <button className="w-full md:w-auto flex items-center justify-center gap-2 bg-[#2A9D8F] hover:bg-[#21867a] text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#2a9d8f33] text-sm md:text-base">
+              <Link href={'/appoinment'} className="w-full md:w-auto flex items-center justify-center gap-2 bg-[#2A9D8F] hover:bg-[#21867a] text-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#2a9d8f33] text-sm md:text-base">
                 <CalendarCheck className="w-4 h-4 md:w-5 md:h-5" />
                 Book Appointment
-              </button>
+              </Link>
             </div>
           </div>
 
