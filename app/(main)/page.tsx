@@ -16,7 +16,7 @@ const page = () => {
       <Stats />
       <Suspense 
         fallback={
-          <div className="flex justify-center items-center py-20 bg-[#F8FBFB]">
+          <div className="flex justify-center items-center py-20 bg-white/90">
             <LoadingSpinner />
           </div>
         }

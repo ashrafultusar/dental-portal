@@ -23,7 +23,8 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
           <Image
             src={doctor.image || "/placeholder-doctor.png"}
             alt={doctor.name}
-            fill
+            fill priority 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
         </div>
@@ -41,7 +42,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
             </div>
           </div>
 
-          <button className="w-full py-2.5 text-sm font-bold text-teal-600 bg-teal-50 rounded-xl group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300">
+          <button className="w-full py-2.5 text-sm font-bold text-teal-600 bg-teal-50 rounded-xl group-hover:bg-teal-500 group-hover:text-white transition-colors cursor-pointer duration-300">
             View Details
           </button>
         </div>

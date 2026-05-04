@@ -25,7 +25,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         <Image
           src={service.image || "/placeholder-service.png"}
           alt={service.title}
-          fill
+          fill priority
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 50vw, 33vw"
         />
