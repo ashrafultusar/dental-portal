@@ -44,6 +44,8 @@ export async function createServiceAction(formData: FormData) {
 
     if (success) {
         revalidatePath("/dental-staff-portal/services");
+        revalidatePath("/");
+        revalidatePath("/services");
         redirect("/dental-staff-portal/services");
     }
 }
@@ -60,6 +62,9 @@ export async function deleteServiceAction(id: string) {
         }
 
         revalidatePath("/dental-staff-portal/services");
+        revalidatePath("/");
+        revalidatePath("/services");
+        revalidatePath(`/services/${id}`);
         return { success: true };
     } catch (error) {
         console.error("Delete failed:", error);
@@ -120,6 +125,9 @@ export async function updateServiceAction(id: string, formData: FormData) {
 
     if (success) {
         revalidatePath("/dental-staff-portal/services");
+        revalidatePath("/");
+        revalidatePath("/services");
+        revalidatePath(`/services/${id}`);
         redirect("/dental-staff-portal/services");
     }
 }
