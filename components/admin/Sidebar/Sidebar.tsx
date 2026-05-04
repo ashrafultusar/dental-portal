@@ -64,7 +64,7 @@ export default function Sidebar() {
         </div>
 
         <button
-          className="p-2 hover:bg-white/10 rounded-md transition-colors"
+          className="p-2 cursor-pointer hover:bg-white/10 rounded-md transition-colors"
           onClick={() => setIsMobileOpen(true)}
         >
           <Menu size={24} />
@@ -90,7 +90,7 @@ export default function Sidebar() {
       >
         <div className="flex flex-col h-full relative">
           <button
-            className="lg:hidden absolute right-4 top-6 text-white p-1 hover:bg-white/10 rounded"
+            className="lg:hidden absolute right-4 top-6 text-white p-1 hover:bg-white/10 rounded cursor-pointer"
             onClick={() => setIsMobileOpen(false)}
           >
             <X size={24} />
@@ -118,7 +118,7 @@ export default function Sidebar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="hidden lg:flex absolute -right-3 top-9 bg-teal-500 text-white rounded-full p-1.5 border-2 border-[#0f172a] hover:scale-110 transition-transform"
+              className="hidden lg:flex absolute -right-3 top-9 bg-teal-500 text-white rounded-full p-1.5 border-2 border-[#0f172a] hover:scale-110 cursor-pointer transition-transform"
             >
               {isOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
             </button>

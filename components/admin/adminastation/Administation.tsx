@@ -35,10 +35,7 @@ export default function UserManagementTable({ initialUsers }: { initialUsers: Us
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <ShieldCheck className="text-[#2A9D8F]" /> Staff Management
-      </h1>
-
+    
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <table className="w-full text-left border-collapse">
           <thead className="bg-gray-50 border-b">
