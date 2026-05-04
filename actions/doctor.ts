@@ -15,6 +15,7 @@ export async function createDoctorAction(formData: FormData) {
     const name = formData.get("name") as string;
     const specialty = formData.get("specialty") as string;
     const experience = formData.get("experience") as string;
+    const university = formData.get("university") as string;
     const description = formData.get("description") as string;
     const imageFile = formData.get("image") as File;
 
@@ -27,6 +28,7 @@ export async function createDoctorAction(formData: FormData) {
       name,
       specialty,
       experience,
+      university,
       description,
       image: imageUrl,
     });
@@ -38,6 +40,8 @@ export async function createDoctorAction(formData: FormData) {
   }
 
   if (success) {
+    revalidatePath("/");
+    revalidatePath("/doctors");
     revalidatePath("/dental-staff-portal/doctor");
     redirect("/dental-staff-portal/doctor");
   }
@@ -47,7 +51,7 @@ export async function createDoctorAction(formData: FormData) {
 export async function deleteDoctorAction(id: string) {
   try {
     await connectDB();
-    
+
     // Database theke doctor delete kora
     const deletedDoctor = await Doctor.findByIdAndDelete(id);
 
@@ -56,6 +60,8 @@ export async function deleteDoctorAction(id: string) {
     }
 
     // List refresh korar jonno cache clear kora
+    revalidatePath("/");
+    revalidatePath("/doctors");
     revalidatePath("/dental-staff-portal/doctor");
     return { success: true };
   } catch (error) {
@@ -69,14 +75,15 @@ export async function updateDoctorAction(id: string, formData: FormData) {
   let success = false;
   try {
     await connectDB();
-    
+
     const name = formData.get("name") as string;
     const specialty = formData.get("specialty") as string;
     const experience = formData.get("experience") as string;
+    const university = formData.get("university") as string;
     const description = formData.get("description") as string;
     const imageFile = formData.get("image") as File;
 
-    const updateData: any = { name, specialty, experience, description };
+    const updateData: any = { name, specialty, experience, university, description };
 
     // Jodi notun image upload kora hoy
     if (imageFile && imageFile.size > 0) {
@@ -92,6 +99,8 @@ export async function updateDoctorAction(id: string, formData: FormData) {
   }
 
   if (success) {
+    revalidatePath("/");
+    revalidatePath("/doctors");
     revalidatePath("/dental-staff-portal/doctor");
     redirect("/dental-staff-portal/doctor");
   }

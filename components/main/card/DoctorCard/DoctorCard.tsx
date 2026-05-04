@@ -1,49 +1,52 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface DoctorCardProps {
   doctor: {
     _id: string;
-    image: string;
+    image?: string;
     name: string;
-    specialty: string;
-    experience: string;
-    description: string;
+    specialty?: string;
+    experience?: string;
+    description?: string;
+    university?: string;
   };
 }
 
 const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-      {/* Doctor Image Container */}
-      <div className="relative aspect-[4/5] w-full bg-gray-100">
-        <Image
-          src={doctor.image || "/placeholder-doctor.png"}
-          alt={doctor.name}
-          fill
-          className="object-cover"
-        />
-      </div>
-
-      {/* Doctor Details */}
-      <div className="p-5">
-        <h3 className="text-lg font-bold text-[#1D2939] mb-2">{doctor.name}</h3>
-
-        {/* Badges */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="px-3 py-1 bg-[#E9F5F3] text-[#2A9D8F] text-[10px] font-bold rounded-lg border border-[#D1E9E5]">
-            {doctor.specialty}
-          </span>
-          <span className="text-gray-400 text-[10px] font-medium">
-            {doctor.experience}
-          </span>
+    <Link href={`/doctors/${doctor._id}`} className="group block">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-shadow">
+        {/* Doctor Image Container */}
+        <div className="relative aspect-[4/5] w-full bg-gray-100 overflow-hidden">
+          <Image
+            src={doctor.image || "/placeholder-doctor.png"}
+            alt={doctor.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
         </div>
 
-        <p className="text-gray-500 text-[12px] leading-relaxed line-clamp-2">
-          {doctor.description}
-        </p>
+        {/* Doctor Details */}
+        <div className="p-5">
+          <h3 className="text-lg font-bold text-[#1D2939] mb-3">{doctor.name}</h3>
+
+          <div className="flex flex-col gap-1.5 mb-4">
+            <div className="text-[13px] text-gray-600">
+              <span className="font-bold text-[#2A9D8F]">Specialty:</span> {doctor.specialty || "Not specified"}
+            </div>
+            <div className="text-[13px] text-gray-600">
+              <span className="font-bold text-[#2A9D8F]">Experience:</span> {doctor.experience || "Not specified"}
+            </div>
+          </div>
+
+          <button className="w-full py-2.5 text-sm font-bold text-teal-600 bg-teal-50 rounded-xl group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300">
+            View Details
+          </button>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

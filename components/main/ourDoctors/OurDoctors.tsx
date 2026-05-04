@@ -26,9 +26,9 @@ const OurDoctors = async () => {
           </h2>
         </div>
 
-       
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto mb-12">
-        {doctorsData.map((doctor: Doctor) => (
+          {doctorsData.slice().reverse().map((doctor: Doctor) => (
             <DoctorCard key={doctor._id} doctor={doctor} />
           ))}
         </div>

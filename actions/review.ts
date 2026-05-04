@@ -32,6 +32,8 @@ export async function createReviewAction(formData: FormData) {
     }
 
     if (success) {
+        revalidatePath("/");
+        revalidatePath("/reviews");
         revalidatePath("/dental-staff-portal/review");
         redirect("/dental-staff-portal/review");
     }
@@ -47,7 +49,9 @@ export async function deleteReviewAction(id: string) {
             return { error: "Review not found" };
         }
 
-        revalidatePath("/dental-staff-portal/reviews");
+        revalidatePath("/");
+        revalidatePath("/reviews");
+        revalidatePath("/dental-staff-portal/review");
         return { success: true };
     } catch (error) {
         console.error("Delete failed:", error);
@@ -76,7 +80,9 @@ export async function updateReviewAction(id: string, formData: FormData) {
     }
 
     if (success) {
-        revalidatePath("/dental-staff-portal/reviews");
-        redirect("/dental-staff-portal/reviews");
+        revalidatePath("/");
+        revalidatePath("/reviews");
+        revalidatePath("/dental-staff-portal/review");
+        redirect("/dental-staff-portal/review");
     }
 }

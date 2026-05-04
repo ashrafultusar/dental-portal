@@ -8,7 +8,7 @@ import Doctor from "@/models/Doctor";
 export async function getDoctorsAction() {
   try {
     await connectDB();
-    
+
     // Database theke shob doctor find kora
     // .lean() use kora hoyeche jate Plain JavaScript Object pawa jay (faster)
     const doctors = await Doctor.find({}).sort({ createdAt: -1 }).lean();
@@ -18,5 +18,17 @@ export async function getDoctorsAction() {
   } catch (error) {
     console.error("Failed to fetch doctors:", error);
     return [];
+  }
+}
+
+export async function getDoctorByIdAction(id: string) {
+  try {
+    await connectDB();
+    const doctor = await Doctor.findById(id).lean();
+    if (!doctor) return null;
+    return JSON.parse(JSON.stringify(doctor));
+  } catch (error) {
+    console.error("Failed to fetch doctor by id:", error);
+    return null;
   }
 }
