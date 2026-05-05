@@ -4,7 +4,7 @@ export const authConfig = {
   pages: {
     signIn: "/login",
   },
-  providers: [],
+  providers: [], // এখানে কিছুই লাগবে না
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -20,7 +20,6 @@ export const authConfig = {
       }
       return session;
     },
-    // এখানে শুধু রাউটিং লজিক থাকবে
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const userRole = (auth?.user as any)?.role;
@@ -30,10 +29,8 @@ export const authConfig = {
       const isLoginPage = pathname.startsWith("/login");
 
       if (isOnDashboard) {
-        if (!isLoggedIn) return false; // রিডাইরেক্ট হবে /login এ
-        if (userRole === "admin" || userRole === "moderator") {
-          return true;
-        }
+        if (!isLoggedIn) return false; 
+        if (userRole === "admin" || userRole === "moderator") return true;
         return Response.redirect(new URL("/", nextUrl));
       }
 
