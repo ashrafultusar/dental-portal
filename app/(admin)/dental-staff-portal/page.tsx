@@ -1,10 +1,8 @@
-"use client";
-
 import React from 'react';
 import { 
   Users, 
   CalendarCheck, 
-  Clock, 
+  Star, 
   TrendingUp, 
   Plus, 
   Settings, 
@@ -12,12 +10,21 @@ import {
   ClipboardList
 } from 'lucide-react';
 import Link from 'next/link';
+import { getDoctorsAction } from '@/lib/data/getDoctor';
+import { getServicesAction } from '@/lib/data/getService';
+import { getReviewsAction } from '@/lib/data/getReview';
 
-export default function AdminDashboard() {
+export const dynamic = 'force-dynamic';
+
+export default async function AdminDashboard() {
+  const doctors = await getDoctorsAction();
+  const services = await getServicesAction();
+  const reviews = await getReviewsAction();
+
   const stats = [
-    { title: "Total Doctors", value: "12", icon: Users, color: "text-blue-600", bg: "bg-blue-50" },
-    { title: "Active Appointments", value: "48", icon: CalendarCheck, color: "text-teal-600", bg: "bg-teal-50" },
-    { title: "New Requests", value: "5", icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
+    { title: "Total Doctors", value: doctors?.length || 0, icon: Users, color: "text-blue-600", bg: "bg-blue-50" },
+    { title: "Total Services", value: services?.length || 0, icon: CalendarCheck, color: "text-teal-600", bg: "bg-teal-50" },
+    { title: "Total Reviews", value: reviews?.length || 0, icon: Star, color: "text-amber-600", bg: "bg-amber-50" },
   ];
 
   return (
