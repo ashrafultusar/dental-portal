@@ -1,4 +1,4 @@
-import EditServiceForm from "@/components/admin/EditServiceForm/EditServiceForm";
+import EditServiceForm from "@/components/admin/review/EditServiceForm/EditServiceForm";
 import { getServiceByIdAction } from "@/lib/data/getService";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";

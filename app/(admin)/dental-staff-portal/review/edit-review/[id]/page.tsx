@@ -1,4 +1,4 @@
-import EditReviewForm from "@/components/admin/EditReviewForm/EditReviewForm";
+import EditReviewForm from "@/components/admin/review/EditReviewForm/EditReviewForm";
 import { getReviewByIdAction } from "@/lib/data/getReview";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";

@@ -1,4 +1,4 @@
-import ServiceUploadForm from "@/components/admin/ServiceUploadForm/ServiceUploadForm";
+import ServiceUploadForm from "@/components/admin/service/ServiceUploadForm/ServiceUploadForm";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 

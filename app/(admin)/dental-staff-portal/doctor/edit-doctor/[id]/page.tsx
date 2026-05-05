@@ -2,7 +2,7 @@
 import React from 'react';
 import { connectDB } from "@/db/dbConfig";
 import Doctor from "@/models/Doctor";
-import EditDoctorForm from '@/components/admin/EditDoctorForm/EditDoctorForm';
+import EditDoctorForm from '@/components/admin/doctor/EditDoctorForm/EditDoctorForm';
 import { notFound } from "next/navigation";
 
 export default async function EditDoctorPage({ params }: { params: Promise<{ id: string }> }) {

@@ -1,4 +1,4 @@
-import ReviewUploadForm from "@/components/admin/ReviewUploadForm/ReviewUploadForm";
+import ReviewUploadForm from "@/components/admin/review/ReviewUploadForm/ReviewUploadForm";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 

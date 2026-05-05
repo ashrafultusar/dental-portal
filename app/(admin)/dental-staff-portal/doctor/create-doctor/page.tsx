@@ -1,4 +1,4 @@
-import DoctorUploadForm from "@/components/admin/DoctorUploadForm/DoctorUploadForm";
+import DoctorUploadForm from "@/components/admin/doctor/DoctorUploadForm/DoctorUploadForm";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
