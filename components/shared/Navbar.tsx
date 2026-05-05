@@ -42,7 +42,7 @@ const LandingNavbar = () => {
             Dr.Sabbir Dental Care
           </span>
         </Link>
-
+     
         {/* Desktop Nav Links */}
         <ul className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (

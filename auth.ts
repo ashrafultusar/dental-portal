@@ -5,17 +5,6 @@ import bcrypt from "bcryptjs";
 import User from "@/models/User";
 import { connectDB } from "@/db/dbConfig";
 
-async function getUser(email: string) {
-  try {
-    await connectDB();
-    const user = await User.findOne({ email }).select("+password");
-    return user;
-  } catch (error) {
-    console.error("Failed to fetch user:", error);
-    throw new Error("Failed to fetch user.");
-  }
-}
-
 export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
   providers: [
@@ -23,13 +12,12 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const email = credentials.email as string;
-        const password = credentials.password as string;
-
-        const user = await getUser(email);
+        await connectDB();
+        const user = await User.findOne({ email: credentials.email }).select("+password");
+        
         if (!user) return null;
 
-        const passwordsMatch = await bcrypt.compare(password, user.password);
+        const passwordsMatch = await bcrypt.compare(credentials.password as string, user.password);
 
         if (passwordsMatch) {
           return {
@@ -39,8 +27,6 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
             role: user.role,
           };
         }
-
-        console.log("Invalid credentials");
         return null;
       },
     }),
