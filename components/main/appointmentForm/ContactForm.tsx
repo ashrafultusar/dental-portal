@@ -29,7 +29,7 @@ const ContactForm = () => {
   const handleWhatsAppSend = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const myNumber = "8801951-029630"; 
+    const myNumber = "+8801951029630"; 
 
     const text = `*New Inquiry*%0A
 *Name:* ${formData.name}%0A
@@ -60,7 +60,7 @@ const ContactForm = () => {
             placeholder="Phone Number" 
             required
             onChange={handleChange}
-            className="w-full px-6 py-4 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:border-[#2A9D8F] focus:bg-white transition-all placeholder:text-gray-400 text-sm"
+            className="w-full px-6 py-4 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:border-[#2A9D8F] focus:bg-white text-black transition-all placeholder:text-gray-400 text-sm"
           />
         </div>
         <input 
@@ -68,7 +68,7 @@ const ContactForm = () => {
           name="email"
           placeholder="Email Address" 
           onChange={handleChange}
-          className="w-full px-6 py-4 bg-[#F9FAFB] border border-gray-100 rounded-xl focus:outline-none focus:border-[#2A9D8F] focus:bg-white transition-all placeholder:text-gray-400 text-sm"
+          className="w-full px-6 py-4 bg-[#F9FAFB] border text-black border-gray-100 rounded-xl focus:outline-none focus:border-[#2A9D8F] focus:bg-white transition-all placeholder:text-gray-400 text-sm"
         />
         <input 
           type="text" 

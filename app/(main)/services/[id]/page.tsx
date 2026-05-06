@@ -179,7 +179,7 @@ export default async function ServiceDetailsPage({
               </Link>
 
               <a
-                href="tel:+8801234567890"
+                href="tel:+8801951029630"
                 className="w-full sm:w-auto bg-white border-2 border-gray-200 text-gray-700 font-bold text-lg rounded-full px-10 py-4 sm:py-[18px] hover:border-[#0E5B96] hover:text-[#0E5B96] transition-all flex items-center justify-center gap-3"
               >
                 <Phone size={22} /> Call Us

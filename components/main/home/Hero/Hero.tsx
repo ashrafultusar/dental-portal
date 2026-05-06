@@ -34,7 +34,7 @@ const Hero = () => {
           {/* Features Checklist */}
           <div className="flex flex-wrap gap-6 pt-4">
             <div className="flex items-center gap-2 text-gray-600 font-medium">
-              <CheckCircle2 size={18} className="text-[#2A9D8F]" /> Pain-free treatments
+              <CheckCircle2 size={18} className="text-[#2A9D8F]" /> Pain-Less treatments
             </div>
             <div className="flex items-center gap-2 text-gray-600 font-medium">
               <CheckCircle2 size={18} className="text-[#2A9D8F]" /> Modern equipment
@@ -65,7 +65,7 @@ const Hero = () => {
             </div>
             <div>
               <p className="text-xs text-gray-400 font-medium">Emergency?</p>
-              <p className="text-base font-bold text-[#1D2939]">+8801951-029630</p>
+              <p className="text-base font-bold text-[#1D2939]">+8801951029630</p>
             </div>
           </div>
         </div>

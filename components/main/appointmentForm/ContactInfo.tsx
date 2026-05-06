@@ -13,21 +13,21 @@ const ContactInfo = () => {
     {
       icon: <Phone size={24} />,
       label: "Phone",
-      value: "+8801951-029630",
+      value: "+8801951029630",
       color: "text-blue-500",
       bg: "bg-blue-50"
     },
     {
       icon: <Mail size={24} />,
       label: "Email",
-      value: "sabbirahmedbappa27189@gmail.com",
+      value: "sabbirdental2021@gmail.com",
       color: "text-amber-500",
       bg: "bg-amber-50"
     },
     {
       icon: <Clock size={24} />,
       label: "Hours",
-      value: "Sat–Thu: 9AM–9PM, Fri: Closed",
+      value: "Open daily from 5 PM to 10 PM.",
       color: "text-emerald-500",
       bg: "bg-emerald-50"
     }
@@ -51,11 +51,11 @@ const ContactInfo = () => {
           ))}
         </div>
       </div>
-
+  
       {/* Google Map */}
       <div className="w-full h-[280px] rounded-[32px] overflow-hidden border border-gray-100 shadow-sm relative">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.328233583!2d90.3665091!3d23.8069293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0d6f6b8c2ff%3A0x3b131e548c10e3f8!2sMirpur%2010!5e0!3m2!1sen!2sbd!4v1712800000000!5m2!1sen!2sbd" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.354823073296!2d90.3519785!3d23.8059785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c144f61ef331%3A0x4d9efed87ed6eb9c!2sDr.%20Sabbir%20Dental%20Care!5e0!3m2!1sen!2sbd!4v1778087292198!5m2!1sen!2sbd" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
