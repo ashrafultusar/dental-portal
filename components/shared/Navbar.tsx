@@ -17,7 +17,7 @@ const LandingNavbar = () => {
     { name: "Services", href: "/services" },
     { name: "Doctors", href: "/doctors" },
     { name: "Reviews", href: "/reviews" },
-    { name: "Contact", href: "/appoinment" },
+    { name: "Contact", href: "/appointment" },
   ];
 
   const isActive = (path: string) => {
@@ -49,11 +49,10 @@ const LandingNavbar = () => {
             <li key={link.name}>
               <Link
                 href={link.href}
-                className={`font-medium transition-all ${
-                  isActive(link.href)
+                className={`font-medium transition-all ${isActive(link.href)
                     ? "text-[#2A9D8F] font-bold border-b-2 border-[#2A9D8F]"
                     : "text-[#667085] hover:text-[#2A9D8F]"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
@@ -112,15 +111,13 @@ const LandingNavbar = () => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-50 transition-opacity duration-300 lg:hidden ${
-          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-50 transition-opacity duration-300 lg:hidden ${isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         onClick={() => setIsMenuOpen(false)}
       />
       <div
-        className={`fixed top-0 right-0 h-full w-[300px] bg-white z-50 shadow-2xl transform transition-transform duration-500 lg:hidden ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[300px] bg-white z-50 shadow-2xl transform transition-transform duration-500 lg:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="p-6 flex justify-between items-center border-b">
           <span className="font-bold text-black">Menu</span>
@@ -137,11 +134,10 @@ const LandingNavbar = () => {
               <Link
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`block p-4 rounded-xl font-medium ${
-                  isActive(link.href)
+                className={`block p-4 rounded-xl font-medium ${isActive(link.href)
                     ? "bg-[#2A9D8F]/10 text-[#2A9D8F]"
                     : "text-gray-600 hover:bg-gray-50"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>

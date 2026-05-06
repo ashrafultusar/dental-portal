@@ -76,7 +76,7 @@ export default async function ServiceDetailsPage({
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0E5B96] to-[#2A9D8F] rounded-[2rem] transform rotate-3 scale-[1.02] opacity-20 transition-transform duration-500"></div>
 
-             
+
                 <ServiceImageSlider
                   images={
                     service.images && service.images.length > 0
@@ -168,7 +168,7 @@ export default async function ServiceDetailsPage({
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-auto">
               <Link
-                href={`/appoinment`}
+                href={`/appointment`}
                 className="group relative w-full sm:w-auto overflow-hidden bg-[#2a9d8f] text-white font-bold text-lg rounded-full px-10 py-5 transition-all outline-none focus:ring-4 focus:ring-blue-300 hover:shadow-xl hover:shadow-blue-500/30 flex items-center justify-center gap-3"
               >
                 <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>

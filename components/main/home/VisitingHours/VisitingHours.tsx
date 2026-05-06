@@ -7,7 +7,7 @@ const VisitingHours = () => {
     <section className="py-12 md:py-20 bg-slate-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
-          
+
           {/* Left Column: Text Content */}
           <div className="flex-1 w-full space-y-6">
             <div>
@@ -18,7 +18,7 @@ const VisitingHours = () => {
                 Visiting <span className="text-[#2A9D8F]">Hours</span>
               </h2>
             </div>
-            
+
             <p className="text-slate-500 leading-relaxed text-sm md:text-lg">
               We are open seven days a week, including weekends. Walk-ins are always welcome.
             </p>
@@ -31,7 +31,7 @@ const VisitingHours = () => {
             </div>
 
             <div className="pt-2">
-              <Link href={'/appoinment'} className="inline-flex items-center justify-center gap-2 bg-[#2A9D8F] hover:bg-[#21867a] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#2a9d8f33]">
+              <Link href={'/appointment'} className="inline-flex items-center justify-center gap-2 bg-[#2A9D8F] hover:bg-[#21867a] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-[#2a9d8f33]">
                 <CalendarCheck className="w-5 h-5" />
                 Book Appointment
               </Link>
@@ -63,14 +63,14 @@ const VisitingHours = () => {
             <div className="bg-[#0f172a] text-white p-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-black transition-colors cursor-pointer">
               <Phone className="w-5 h-5 text-[#2A9D8F]" />
               <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-                 <span className="text-sm font-medium text-slate-300">Emergency Call:</span>
-                 <a href="tel:+8801951029630" className="text-[#2A9D8F] text-lg font-black tracking-tight">
+                <span className="text-sm font-medium text-slate-300">Emergency Call:</span>
+                <a href="tel:+8801951029630" className="text-[#2A9D8F] text-lg font-black tracking-tight">
                   +880 1951-029630
                 </a>
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>

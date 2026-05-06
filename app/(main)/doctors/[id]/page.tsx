@@ -123,30 +123,30 @@ const DoctorDetailsPage = async (props: DoctorDetailsProps) => {
               </div>
             </div>
 
-           {/* Availability Section */}
-<div className="mb-12">
-  <h2 className="text-2xl font-bold text-[#1D2939] mb-6">
-    Availability
-  </h2>
-  <div className="bg-teal-50/50 p-6 rounded-2xl border border-teal-100 flex items-center gap-4">
-    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 shrink-0">
-      <Clock size={24} />
-    </div>
-    <div>
-      <div className="text-sm text-teal-700 font-bold uppercase tracking-wider mb-1">
-        Everyday
-      </div>
-      <div className="text-gray-800 font-bold text-xl">
-        05:00 PM - 10:00 PM
-      </div>
-    </div>
-  </div>
-</div>
+            {/* Availability Section */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-[#1D2939] mb-6">
+                Availability
+              </h2>
+              <div className="bg-teal-50/50 p-6 rounded-2xl border border-teal-100 flex items-center gap-4">
+                <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 shrink-0">
+                  <Clock size={24} />
+                </div>
+                <div>
+                  <div className="text-sm text-teal-700 font-bold uppercase tracking-wider mb-1">
+                    Everyday
+                  </div>
+                  <div className="text-gray-800 font-bold text-xl">
+                    05:00 PM - 10:00 PM
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* CTA Button */}
             <div className="mt-8">
               <Link
-                href="/appoinment"
+                href="/appointment"
                 className="group relative w-full flex items-center justify-center gap-3 bg-[#2A9D8F] hover:bg-[#21867a] text-white py-5 px-8 rounded-2xl text-lg font-bold transition-all duration-300 shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>

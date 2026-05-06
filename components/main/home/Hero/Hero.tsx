@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
-import styles from './Hero.module.css'; 
+import styles from './Hero.module.css';
 import Link from 'next/link';
 
 const Hero = () => {
   return (
     <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center bg-[#F8FBFB] overflow-hidden">
       <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
+
         {/* Left Content */}
         <div className="space-y-8 z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9F5F3] text-[#2A9D8F] text-sm font-medium border border-[#D1E9E5]">
@@ -23,7 +23,7 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Link href={'/appoinment'} className="flex items-center gap-2 px-8 py-4 bg-[#2A9D8F] text-white font-bold rounded-xl hover:bg-[#23857a] transition-all shadow-lg shadow-teal-100">
+            <Link href={'/appointment'} className="flex items-center gap-2 px-8 py-4 bg-[#2A9D8F] text-white font-bold rounded-xl hover:bg-[#23857a] transition-all shadow-lg shadow-teal-100">
               Book Appointment <ArrowRight size={20} />
             </Link>
             <Link href={'/services'} className="px-8 py-4 bg-white text-[#1D2939] font-bold border border-gray-200 rounded-xl hover:bg-gray-50 transition-all">
@@ -48,7 +48,7 @@ const Hero = () => {
         {/* Right Image Section */}
         <div className="relative flex justify-center items-center">
           <div className="relative w-full max-w-[550px] aspect-square rounded-[40px] overflow-hidden shadow-2xl">
-            <Image 
+            <Image
               src="/assets/Hero/hero.jpeg"
               sizes="(max-width: 1024px) 100vw, 50vw"
               alt="Modern Dental Office"

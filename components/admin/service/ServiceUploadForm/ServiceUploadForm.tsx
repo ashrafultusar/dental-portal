@@ -1,39 +1,48 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useRef } from "react";
 import { createServiceAction } from "@/actions/service";
 import { ImageIcon, X, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 export default function ServiceUploadForm() {
-    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-    const [previews, setPreviews] = useState<string[]>([]);
+    // Store both file and its synchronous preview together to ensure strict pairing
+    const [selectedFiles, setSelectedFiles] = useState<{ file: File; preview: string }[]>([]);
     const [isPending, startTransition] = useTransition();
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || []);
         if (files.length > 0) {
-            setSelectedFiles(prev => [...prev, ...files]);
-            files.forEach(file => {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    setPreviews(prev => [...prev, reader.result as string]);
-                };
-                reader.readAsDataURL(file);
-            });
+            const newFilesWithPreviews = files.map(file => ({
+                file,
+                preview: URL.createObjectURL(file)
+            }));
+            setSelectedFiles(prev => [...prev, ...newFilesWithPreviews]);
         }
-        e.target.value = '';
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
     };
 
-    const removeImage = (index: number) => {
-        setSelectedFiles(prev => prev.filter((_, i) => i !== index));
-        setPreviews(prev => prev.filter((_, i) => i !== index));
+    const removeImage = (indexToRemove: number) => {
+        setSelectedFiles(prev => prev.filter((item, i) => {
+            if (i === indexToRemove) {
+                URL.revokeObjectURL(item.preview);
+            }
+            return i !== indexToRemove;
+        }));
     };
 
     const clientAction = async (formData: FormData) => {
+        // Form inherently has title, price, icon, description
+        // Remove native images string input if there somehow
+        formData.delete("image");
+        formData.delete("images");
+
         // Append all selected files to formData
-        selectedFiles.forEach(file => {
-            formData.append("images", file);
+        selectedFiles.forEach(item => {
+            formData.append("images", item.file);
         });
 
         startTransition(async () => {
@@ -74,21 +83,33 @@ export default function ServiceUploadForm() {
                     <div className="relative">
                         <label className={`flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer bg-slate-50 hover:bg-teal-50 transition-all`}>
                             <ImageIcon className="w-10 h-10 mb-2 text-slate-400" />
-                            <span className="text-sm text-slate-500">Click to upload images</span>
-                            <input id="imageInput" name="image" type="file" accept="image/*" multiple className="hidden" onChange={handleImageChange} />
+                            <span className="text-sm text-slate-500 font-semibold mt-1">Click to add photos</span>
+                            <span className="text-[12px] text-slate-400 mt-1">Recommended: Square JPG/PNG, max 2MB</span>
+                            <input
+                                ref={fileInputRef}
+                                name="image"
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                className="hidden"
+                                onChange={handleImageChange}
+                            />
                         </label>
 
-                        {previews.length > 0 && (
+                        {selectedFiles.length > 0 && (
                             <div className="flex flex-wrap gap-4 mt-4">
-                                {previews.map((preview, index) => (
-                                    <div key={index} className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-teal-500">
-                                        <Image src={preview} alt={`Preview ${index}`} fill className="object-cover" />
+                                {selectedFiles.map((item, index) => (
+                                    <div key={index} className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-teal-500 group">
+                                        <Image src={item.preview} alt={`Preview ${index}`} fill className="object-cover" />
                                         <button
                                             type="button"
-                                            onClick={() => removeImage(index)}
-                                            className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                removeImage(index);
+                                            }}
+                                            className="absolute top-2 right-2 bg-red-500/80 hover:bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all z-10"
                                         >
-                                            <X size={14} />
+                                            <X size={16} />
                                         </button>
                                     </div>
                                 ))}
@@ -100,7 +121,7 @@ export default function ServiceUploadForm() {
                 <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 disabled:opacity-70"
+                    className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 mt-4 transition-all"
                 >
                     {isPending ? <><Loader2 className="animate-spin" /> Saving...</> : "Publish Service"}
                 </button>

@@ -83,7 +83,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/appoinment"
+                href="/appointment"
                 className="hover:text-[#2A9D8F] transition-colors"
               >
                 Contact
