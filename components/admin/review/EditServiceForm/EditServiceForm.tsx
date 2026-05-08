@@ -6,8 +6,7 @@ import { Loader2, Camera, X, AlertCircle, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const MAX_FILE_SIZE_MB = 5;
-const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
 
 interface IService {
   _id: string;
@@ -61,8 +60,8 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
   const initialImages = service.images?.length
     ? service.images
     : service.image
-    ? [service.image]
-    : [];
+      ? [service.image]
+      : [];
 
   const [existingImages, setExistingImages] = useState<string[]>(initialImages);
   // newFiles: files selected by user, not yet uploaded
@@ -81,19 +80,6 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     setUploadError(null);
-
-    const oversized = files.filter((f) => f.size > MAX_FILE_SIZE_BYTES);
-    if (oversized.length > 0) {
-      setUploadError(
-        `${oversized
-          .map((f) => f.name)
-          .join(
-            ", "
-          )} exceeds ${MAX_FILE_SIZE_MB}MB limit. Please choose smaller images.`
-      );
-      if (fileInputRef.current) fileInputRef.current.value = "";
-      return;
-    }
 
     const previews = files.map((file) => ({
       file,
@@ -150,9 +136,9 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
         }
       });
     } catch (err) {
-        setUploading(false);
-        const errorMessage = err instanceof Error ? err.message : "Image upload failed. Please try again.";
-        setUploadError(errorMessage);
+      setUploading(false);
+      const errorMessage = err instanceof Error ? err.message : "Image upload failed. Please try again.";
+      setUploadError(errorMessage);
     }
   };
 
@@ -245,14 +231,14 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
                 <Image
                   src={img}
                   alt={`Image ${idx + 1}`}
-                  fill priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
+                  fill priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
                 <button
                   type="button"
                   onClick={() => handleRemoveExisting(idx)}
                   disabled={isLoading}
-                 className="absolute top-2 right-2 bg-red-500 rounded-full p-1.5 transition-all z-10 disabled:pointer-events-none"
+                  className="absolute top-2 right-2 bg-red-500 rounded-full p-1.5 transition-all z-10 disabled:pointer-events-none"
                 >
                   <X size={16} />
                 </button>
@@ -286,9 +272,8 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
 
           <div className="w-full mt-2">
             <label
-              className={`relative cursor-pointer bg-teal-50 hover:bg-teal-100 text-teal-700 px-4 py-4 rounded-2xl flex items-center justify-center gap-2 border-2 border-dashed border-teal-200 transition-all group ${
-                isLoading ? "opacity-50 pointer-events-none" : ""
-              }`}
+              className={`relative cursor-pointer bg-teal-50 hover:bg-teal-100 text-teal-700 px-4 py-4 rounded-2xl flex items-center justify-center gap-2 border-2 border-dashed border-teal-200 transition-all group ${isLoading ? "opacity-50 pointer-events-none" : ""
+                }`}
             >
               <Camera
                 size={24}
@@ -305,10 +290,7 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
                 disabled={isLoading}
               />
             </label>
-            <p className="text-[12px] text-slate-500 mt-3 ml-2 font-medium">
-              Square JPG or PNG recommended · Max {MAX_FILE_SIZE_MB}MB per image
-              · Multiple files supported
-            </p>
+          
           </div>
         </div>
       </div>
