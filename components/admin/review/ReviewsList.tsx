@@ -72,14 +72,14 @@ export default function ReviewsList({ initialReviews }: { initialReviews: IRevie
             <div className="flex gap-2">
               <Link
                 href={`/dental-staff-portal/review/edit-review/${review._id}`}
-                className="p-2 text-slate-400 hover:text-teal-500 transition-colors"
+                className="p-2 text-teal-500 transition-colors"
               >
                 <Edit size={18} />
               </Link>
               <button
                 onClick={() => handleDelete(review._id)}
                 disabled={loadingId === review._id}
-                className="p-2 text-slate-400 hover:text-red-500 transition-colors disabled:opacity-50"
+                className="p-2 cursor-pointer  text-red-500 transition-colors disabled:opacity-50"
               >
                 {loadingId === review._id ? (
                   <Loader2 size={18} className="animate-spin" />
