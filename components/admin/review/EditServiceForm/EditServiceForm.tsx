@@ -252,7 +252,7 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
                   type="button"
                   onClick={() => handleRemoveExisting(idx)}
                   disabled={isLoading}
-                  className="absolute top-2 right-2 bg-red-500/80 hover:bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all z-10 disabled:pointer-events-none"
+                 className="absolute top-2 right-2 bg-red-500 rounded-full p-1.5 transition-all z-10 disabled:pointer-events-none"
                 >
                   <X size={16} />
                 </button>
