@@ -81,13 +81,12 @@ export async function updateDoctorAction(id: string, formData: FormData) {
     const experience = formData.get("experience") as string;
     const university = formData.get("university") as string;
     const description = formData.get("description") as string;
-    const imageFile = formData.get("image") as File;
 
     const updateData: any = { name, specialty, experience, university, description };
 
-    // Jodi notun image upload kora hoy
-    if (imageFile && imageFile.size > 0) {
-      const imageUrl = await uploadImage(imageFile, "doctors");
+    // Image is pre-uploaded by the client directly to Cloudinary — receive URL string only
+    const imageUrl = formData.get("imageUrl") as string;
+    if (imageUrl && imageUrl.startsWith("http")) {
       updateData.image = imageUrl;
     }
 
@@ -95,7 +94,7 @@ export async function updateDoctorAction(id: string, formData: FormData) {
     success = true;
   } catch (error) {
     console.error("Update failed:", error);
-    return { error: "Failed to update doctor profile" };
+    return { error: "Failed to update doctor profile. Please try again." };
   }
 
   if (success) {
