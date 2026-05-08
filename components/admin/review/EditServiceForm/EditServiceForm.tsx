@@ -102,7 +102,10 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
     );
   };
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
     setUploadError(null);
     setUploading(true);
 
@@ -131,20 +134,22 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
           setUploadError(res.error);
         } else {
           setSuccess(true);
-          // Force the Next.js router to refetch fresh data without a full page reload
           router.refresh();
         }
       });
     } catch (err) {
       setUploading(false);
-      const errorMessage = err instanceof Error ? err.message : "Image upload failed. Please try again.";
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Image upload failed. Please try again.";
       setUploadError(errorMessage);
     }
   };
 
   return (
     <form
-      action={handleSubmit}
+      onSubmit={handleSubmit}
       className="space-y-6 bg-white p-8 rounded-3xl shadow-sm border border-slate-100 max-w-2xl mx-auto"
     >
       {/* Error Banner */}
@@ -290,7 +295,7 @@ export default function EditServiceForm({ service }: EditServiceFormProps) {
                 disabled={isLoading}
               />
             </label>
-          
+
           </div>
         </div>
       </div>
