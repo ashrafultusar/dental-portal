@@ -64,7 +64,7 @@ export default function ServicesList({
                 "/placeholder-doctor.png"
               }
               alt={service.title}
-              fill
+              fill priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute top-3 right-3 bg-[#1E74B5] text-white font-bold py-1 px-3 rounded-lg shadow-md">

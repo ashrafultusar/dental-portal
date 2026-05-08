@@ -83,44 +83,23 @@ export async function updateServiceAction(id: string, formData: FormData) {
         const price = formData.get("price") as string;
         const icon = formData.get("icon") as string;
 
-        // Use existing image or array
         const updateData: any = { title, description, price, icon };
 
-        const imageFiles = formData.getAll("images") as File[];
-        const newImageUrls: string[] = [];
+        // All image URLs are pre-uploaded by the client directly to Cloudinary.
+        // We only receive string URLs here — no binary file data.
+        const allImages = formData.getAll("allImages") as string[];
+        const validImages = allImages.filter((url) => typeof url === "string" && url.startsWith("http"));
 
-        for (const file of imageFiles) {
-            if (file && file.size > 0) {
-                const url = await uploadImage(file, "services");
-                newImageUrls.push(url);
-            }
-        }
-
-        // Single image backward compatibility fallback if single image input is used
-        const singleImageFile = formData.get("image") as File;
-        if (singleImageFile && singleImageFile.size > 0) {
-            const url = await uploadImage(singleImageFile, "services");
-            newImageUrls.push(url);
-        }
-
-        const existingImages = formData.getAll("existingImages") as string[];
-
-        // Include previously uploaded existing images plus new image uploads
-        const finalImages = [...(existingImages || []), ...newImageUrls];
-
-        if (finalImages.length > 0) {
-            updateData.images = finalImages;
-            updateData.image = finalImages[0];
-        } else if (newImageUrls.length > 0) {
-            updateData.images = newImageUrls;
-            updateData.image = newImageUrls[0];
+        if (validImages.length > 0) {
+            updateData.images = validImages;
+            updateData.image = validImages[0];
         }
 
         await Service.findByIdAndUpdate(id, updateData);
         success = true;
     } catch (error) {
         console.error("Update failed:", error);
-        return { error: "Failed to update service" };
+        return { error: "Failed to update service. Please try again." };
     }
 
     if (success) {

@@ -115,7 +115,7 @@ export default function EditDoctorForm({ doctor }: EditDoctorFormProps) {
             <Image
               src={preview || "/placeholder-doctor.png"}
               alt="Preview"
-              fill
+              fill priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
               className="object-cover"
             />
           </div>

@@ -58,7 +58,7 @@ export default function DoctorsList({
               <Image
                 src={doc.image || "/placeholder-doctor.png"}
                 alt={doc.name}
-                fill
+                fill priority sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
                 className="object-cover"
               />
             </div>
