@@ -59,7 +59,10 @@ const Hero = () => {
           </div>
 
           {/* Emergency Badge Overlay */}
-          <div className={`${styles.emergencyBadge} absolute -bottom-6 -left-6 md:left-0 bg-white p-4 rounded-2xl shadow-xl border border-gray-50 flex items-center gap-4 z-20`}>
+          <a 
+            href="tel:+8801951029630" 
+            className={`${styles.emergencyBadge} absolute -bottom-6 -left-6 md:left-0 bg-white p-4 rounded-2xl shadow-xl border border-gray-50 flex items-center gap-4 z-20 hover:scale-105 transition-transform duration-200`}
+          >
             <div className="w-12 h-12 bg-[#E9F5F3] rounded-full flex items-center justify-center text-[#2A9D8F]">
               <Phone size={24} fill="currentColor" />
             </div>
@@ -67,7 +70,7 @@ const Hero = () => {
               <p className="text-xs text-gray-400 font-medium">Emergency?</p>
               <p className="text-base font-bold text-[#1D2939]">+8801951029630</p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
