@@ -22,7 +22,7 @@ const ContactInfo = () => {
     {
       icon: <Mail size={24} />,
       label: "Email",
-      value: "sabbirdental2021@gmail.com",
+      value: "sabbirdentalcare2021@gmail.com",
       color: "text-amber-500",
       bg: "bg-amber-50",
     },
